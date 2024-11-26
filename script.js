@@ -1,0 +1,1 @@
+{/* <i class="fa-solid fa-plus lg:text-[60px] md:text-[40px] text-blue-700 font-thin  border-4  border-blue-700 rounded-full  lg:p-[8px]"></i> */}
