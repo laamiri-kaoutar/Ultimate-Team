@@ -1,1 +1,14 @@
-{/* <i class="fa-solid fa-plus lg:text-[60px] md:text-[40px] text-blue-700 font-thin  border-4  border-blue-700 rounded-full  lg:p-[8px]"></i> */}
+const playerPosition = document.getElementById('playerPosition');
+playerPosition.addEventListener('change', function () {
+    let position = playerPosition.value;
+    const playerStats = document.getElementById('playerStats');
+    const GKStats = document.getElementById('GKStats');
+  
+    if (position == 'GK') {
+      GKStats.classList.remove('hidden');
+      playerStats.classList.add('hidden');
+    } else {
+      GKStats.classList.add('hidden');
+      playerStats.classList.remove('hidden');
+    }
+  });

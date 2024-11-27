@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./script.js" defer></script>
     <link rel="stylesheet" href="./style.css">
     <title>Ultimate-Team</title>
 </head>
@@ -89,55 +90,7 @@
         </section>
 
         <section>
-            <div id="playerModal" class="fixed hidden flex inset-0 bg-gray-800 bg-opacity-75  items-center justify-center ">
-                <div class="bg-gray-900 text-white p-6 rounded-lg shadow-lg w-96">
-                  <h2 class="text-xl font-semibold mb-4">Create Player</h2>
-                  <form id="playerForm">
-                    <!-- Name -->
-                    <label for="name" class="block mb-2">Name</label>
-                    <input type="text" id="name" name="name" class="w-full p-2 mb-4 bg-gray-800 text-white rounded" placeholder="Player Name" />
-              
-                    <!-- Photo URL -->
-                    <label for="photo" class="block mb-2">Photo URL</label>
-                    <input type="text" id="photo" name="photo" class="w-full p-2 mb-4 bg-gray-800 text-white rounded" placeholder="Photo URL" />
-              
-                    <!-- Position -->
-                    <label for="position" class="block mb-2">Position</label>
-                    <select id="position" name="position" class="w-full p-2 mb-4 bg-gray-800 text-white rounded">
-                      <option value="CM">Central Midfielder (CM)</option>
-                      <option value="GK">Goalkeeper (GK)</option>
-                      <!-- Add more positions as needed -->
-                    </select>
-              
-                    <!-- Dynamic Statistics -->
-                    <div id="statistics">
-                      <!-- Default stats for field players -->
-                      <div id="fieldStats">
-                        <label for="rating" class="block mb-2">Rating</label>
-                        <input type="number" id="rating" name="rating" class="w-full p-2 mb-4 bg-gray-800 text-white rounded" placeholder="Rating" />
-              
-                        <label for="pace" class="block mb-2">Pace</label>
-                        <input type="number" id="pace" name="pace" class="w-full p-2 mb-4 bg-gray-800 text-white rounded" placeholder="Pace" />
-              
-                        <label for="shooting" class="block mb-2">Shooting</label>
-                        <input type="number" id="shooting" name="shooting" class="w-full p-2 mb-4 bg-gray-800 text-white rounded" placeholder="Shooting" />
-                      </div>
-              
-                      <!-- Goalkeeper stats (hidden by default) -->
-                      <div id="goalkeeperStats" class="hidden">
-                        <label for="diving" class="block mb-2">Diving</label>
-                        <input type="number" id="diving" name="diving" class="w-full p-2 mb-4 bg-gray-800 text-white rounded" placeholder="Diving" />
-              
-                        <label for="handling" class="block mb-2">Handling</label>
-                        <input type="number" id="handling" name="handling" class="w-full p-2 mb-4 bg-gray-800 text-white rounded" placeholder="Handling" />
-                      </div>
-                    </div>
-              
-                    <!-- Submit -->
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 p-2 rounded">Save Player</button>
-                  </form>
-                </div>
-              </div>
+          
 
               <div id="playerModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center ">
                 <div class="bg-gray-900 text-white p-6 rounded-lg shadow-lg w-[500px] max-h-[90vh] overflow-auto">
@@ -164,7 +117,7 @@
                     <!-- Position -->
                     <div>
                         <label for="position" class="block mb-2">Position</label>
-                        <select id="position" name="position" class="w-full p-2 mb-4 bg-gray-800 text-white rounded">
+                        <select id="playerPosition" name="position" class="w-full p-2 mb-4 bg-gray-800 text-white rounded">
                         <option value="CM">CM</option>
                          <option value="GK">GK</option>
                          </select>
@@ -191,15 +144,6 @@
                         <input type="text" id="logo" name="logo" class="w-full p-2 mb-4 bg-gray-800 text-white rounded" placeholder="Logo URL" />    
                      </div>
                     </div>
-
-
-                     
-         
-
-              
-            
-
-              
                     <!-- Field Player Stats -->
                     <div id="playerStats" class="grid grid-cols-4 gap-4">
                       <div>
