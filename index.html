@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="./style.css">
     <title>Ultimate-Team</title>
 </head>
-<body >
+<body class="bg-black" >
 
-    <main>
-        <section class=" ">
-            <div class="formation flex flex-col   justify-between items-center relative h-screen w-[60%] min-h-fit lg:w-[55%] ">
+    <main >
+        <section class=" flex p-6 gap-2  flex-col items-center md:flex-row  ">
+            <div class="formation flex flex-col   justify-between items-center relative h-screen w-[95%] min-h-fit md:w-[65%] ">
                 <div class="absolute -z-10 inset-0"> <img class="h-full w-full" src="./images/formatiom.jpg" alt=""></div>
 
                 <div class="flex w-[80%] h-[100px] justify-between md:h-[120px] mt-12 md:mt-3">
@@ -26,7 +26,7 @@
                     <div id="cmm" onclick="suggestPlayers('CM')" class="relative h-[80px] w-[60px] md:h-[100px] md:w-[90px] duration-300 hover:scale-105 self-end"><div class="absolute -z-10 inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div></div>
                     <div id="cmr" onclick="suggestPlayers('CM')" class="relative h-[80px] w-[60px] md:h-[100px] md:w-[90px] duration-300 hover:scale-105"><div class="absolute -z-10 inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div></div>
                 </div>
-                <div class="flex w-[100%] justify-between h-[100px] md:h-[120px]">
+                <div class="flex w-[100%] justify-evenly h-[100px] md:h-[120px]">
                     <div id="lb" onclick="suggestPlayers('LB')" class="relative h-[80px] w-[60px] md:h-[100px] md:w-[90px] duration-300 hover:scale-105"><div class="absolute -z-10 inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div></div>
                     <div id="cbl" onclick="suggestPlayers('CB')"  class="relative h-[80px] w-[60px] md:h-[100px] md:w-[90px] duration-300 hover:scale-105 self-end"><div class="absolute -z-10 inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div></div>
                     <div id="cbr" onclick="suggestPlayers('CB')" class="relative h-[80px] w-[60px] md:h-[100px] md:w-[90px] duration-300 hover:scale-105 self-end"><div class="absolute -z-10 inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div></div>
@@ -37,6 +37,14 @@
                 </div>
 
              </div>
+
+            <div class="h-screen w-full rounded-md bg-slate-50/30 bg-opacity-35 md:w-[35%]">
+                <div class="w-full flex justify-end p-4">
+                    <button id="newPlayer" type="submit" class=" bg-slate-950  text-white font-semibold hover:bg-white hover:text-black px-3 py-2 rounded duration-300 ">
+                        New Player
+                      </button>
+                </div>
+            </div>
         </section>
         <div class="relative h-[90px] w-[70px] md:h-[110px] md:w-[100px] lg:h-[130px] lg:w-[100px] duration-300 hover:scale-105">
             <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
@@ -51,7 +59,7 @@
                     </div>
                 </div>              
                 <div class="flex flex-col items-center h-[45%]">
-                    <div class="text-[9px]  md:text-[12px] font-medium md:mt-[-4px] " >De Bruyne</div>
+                    <div class="text-[9px]  md:text-[12px] font-medium md:mt-[-4px] w-[80%] truncate " >De Bruyne gdvgvdhgvedgvédhgd</div>
                     <div class="static-infos flex  gap-[1px] md:mt-[-2px] ">
                         <div >
                             <div class=" text-[5px] md:text-[8px]  font-normal" >PAC</div>
@@ -90,10 +98,10 @@
         <section>
           
 
-              <div id="playerModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden ">
+              <div id="playerModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center ">
                 <div class="bg-gray-900 text-white p-6 rounded-lg  w-[500px]">
                   <!-- <h2 class="text-xl font-semibold mb-4">Create Player</h2> -->
-                  <form id="playerForm">
+                  <form id="playerForm"  >
                     <div class="grid grid-cols-4 gap-4 ">
                                             <!-- Name -->
                      <div>
@@ -115,10 +123,16 @@
                     <!-- Position -->
                     <div>
                         <label for="position" class="block mb-2">Position</label>
-                        <select id="playerPosition" name="position" class="w-full p-2 mb-4 bg-gray-800 text-white rounded">
-                        <option value="CM">CM</option>
-                         <option value="GK">GK</option>
-                         </select>
+                        <select id="position" name="position" class="w-full p-2 mb-4 bg-gray-800 text-white rounded">
+                            <option value="CM">CM</option>
+                            <option value="GK">GK</option>
+                            <option value="LW">LW</option>
+                            <option value="CF">CF</option>
+                            <option value="RW">RW</option>
+                            <option value="LB">LB</option>
+                            <option value="CB">CB</option>
+                            <option value="RB">RB</option>
+                        </select>
                     </div>
 
                     </div>
@@ -143,7 +157,7 @@
                      </div>
                     </div>
                     <!-- Field Player Stats -->
-                    <div id="playerStats" class="grid grid-cols-4 gap-4">
+                    <div id="playerStats" class="grid grid-cols-3 gap-4">
                       <div>
                         <label for="rating" class="block text-sm mb-1">Rat</label>
                         <input type="number" id="rating" name="rating" class="w-full p-2 bg-gray-800 text-white rounded" placeholder="Rating" />
@@ -174,29 +188,44 @@
                       </div>
                     </div>
               
-                    <!-- Goalkeeper Stats -->
-                    <div id="GKStats" class="grid grid-cols-4 gap-4 hidden ">
-                      <div>
-                        <label for="diving" class="block text-sm mb-1">Div</label>
-                        <input type="number" id="diving" name="diving" class="w-full p-2 bg-gray-800 text-white rounded" placeholder="Diving" />
-                      </div>
-                      <div>
-                        <label for="handling" class="block text-sm mb-1">Hand</label>
-                        <input type="number" id="handling" name="handling" class="w-full p-2 bg-gray-800 text-white rounded" placeholder="Handling" />
-                      </div>
-                      <div>
-                        <label for="reflexes" class="block text-sm mb-1">Ref</label>
-                        <input type="number" id="reflexes" name="reflexes" class="w-full p-2 bg-gray-800 text-white rounded" placeholder="Reflexes" />
-                      </div>
-                      <div>
-                        <label for="positioning" class="block text-sm mb-1">Pos</label>
-                        <input type="number" id="positioning" name="positioning" class="w-full p-2 bg-gray-800 text-white rounded" placeholder="Positioning" />
-                      </div>
+                    <div id="GKStats" class="grid grid-cols-3 gap-4 hidden">
+                        <div>
+                            <label for="diving" class="block text-sm mb-1">Div</label>
+                            <input type="number" id="diving" name="diving" class="w-full p-2 bg-gray-800 text-white rounded" placeholder="Diving" />
+                        </div>
+                        <div>
+                            <label for="handling" class="block text-sm mb-1">Hand</label>
+                            <input type="number" id="handling" name="handling" class="w-full p-2 bg-gray-800 text-white rounded" placeholder="Handling" />
+                        </div>
+                        <div>
+                            <label for="reflexes" class="block text-sm mb-1">Ref</label>
+                            <input type="number" id="reflexes" name="reflexes" class="w-full p-2 bg-gray-800 text-white rounded" placeholder="Reflexes" />
+                        </div>
+                        <div>
+                            <label for="positioning" class="block text-sm mb-1">Pos</label>
+                            <input type="number" id="positioning" name="positioning" class="w-full p-2 bg-gray-800 text-white rounded" placeholder="Positioning" />
+                        </div>
+                        <div>
+                            <label for="kicking" class="block text-sm mb-1">Kick</label>
+                            <input type="number" id="kicking" name="kicking" class="w-full p-2 bg-gray-800 text-white rounded" placeholder="Kicking" />
+                        </div>
+                        <div>
+                            <label for="speed" class="block text-sm mb-1">Speed</label>
+                            <input type="number" id="speed" name="speed" class="w-full p-2 bg-gray-800 text-white rounded" placeholder="Speed" />
+                        </div>
+                        <div>
+                            <label for="rating" class="block text-sm mb-1">Rating</label>
+                            <input type="number" id="rating" name="rating" class="w-full p-2 bg-gray-800 text-white rounded" placeholder="Overall Rating" />
+                        </div>
                     </div>
+                    
               
                     <!-- Submit Button -->
-                    <button type="submit" class="mt-4 bg-purple-700 hover:bg-purple-500 text-white px-2 py-1 rounded ">
+                    <button  type="submit" class="mt-4  bg-purple-700 hover:bg-purple-500 text-white px-2 py-1 rounded ">
                       Save Player
+                    </button> 
+                    <button id="cancel" type="button" class="mt-4 bg-slate-300 hover:bg-purple-500 hover:text-white text-black px-2 py-1 rounded ">
+                       cancel
                     </button>
                   </form>
                 </div>
@@ -204,6 +233,9 @@
 
 
               <div class="suggestion fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden  " >
+                <div>
+
+                </div>
                 <div class="suggested-players bg-gray-900 p-6 rounded-lg  w-fit grid grid-cols-3 md:grid-cols-6 gap-4">
                     <div class="relative h-[100px] w-[90px] md:h-[140px] md:w-[110px] lg:h-[180px] lg:w-[150px]">
                         <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>

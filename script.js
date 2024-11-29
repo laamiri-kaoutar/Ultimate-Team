@@ -399,8 +399,22 @@ const players = [
     "positioning": 85
   }
 ]
-const playerPosition = document.getElementById('playerPosition');
+
+let playerModal = document.getElementById("playerModal")
+let btnNewPlayer = document.getElementById("newPlayer");
+let suggest =[];
+let mainplayers =[];
+//  this is the new player button removing the hiiden of the modale
+document.getElementById("newPlayer").addEventListener('click', () => playerModal.classList.remove('hidden') )
+//  this is the cancel button adding the hiiden of the modale
+document.getElementById("cancel").addEventListener('click', () => playerModal.classList.add('hidden') )
+
+
+
+
+const playerPosition = playerModal.querySelector("#position");
 playerPosition.addEventListener('change', function () {
+  console.log("test modal")
     let position = playerPosition.value;
     const playerStats = document.getElementById('playerStats');
     const GKStats = document.getElementById('GKStats');
@@ -413,15 +427,6 @@ playerPosition.addEventListener('change', function () {
       playerStats.classList.remove('hidden');
     }
   });
-
-
-let suggest =[];
-let mainplayers =[];
-
-
-
-
-
 
 // i suggest players here
 function suggestPlayers(pos = "all" ) {
@@ -449,7 +454,7 @@ function displayPlayers(param ,id) {
             <div onclick="addToFormation(${index},'${id}')" class="absolute  inset-0 flex flex-col ">
                 <div class="flex h-[50%] justify-between">
                     <div class="w-[20%]  pt-1 pl-2 md:pt-3  lg:pt-4 lg:pl-3">
-                        <div class="text-[18px] md:text-[20px] font-bold">${elem.rating} ${id}</div>
+                        <div class="text-[18px] md:text-[20px] font-bold">${elem.rating}</div>
                         <div class="text-[14px] md:text-[16px] font-semibold font-mono mt-[-7px]">${elem.position}</div>
                     </div>
                     <div class="w-[80%]" >
@@ -457,7 +462,7 @@ function displayPlayers(param ,id) {
                     </div>
                 </div>              
                 <div class="flex flex-col items-center h-[45%]">
-                    <div class="text-[10px] md:text-[12px] font-medium lg:text-[14px]" >${elem.name}</div>
+                    <div class="text-[10px] md:text-[12px] font-medium lg:text-[14px] w-[80%] truncate " >${elem.name}</div>
                     <div class="static-infos flex  gap-[2px] lg:gap-1">
                         <div >
                             <div class=" text-[6px] md:text-[8px] lg:text-[10px] font-normal" >Pos</div>
@@ -506,7 +511,7 @@ function displayPlayers(param ,id) {
                     </div>
                 </div>              
                 <div class="flex flex-col items-center h-[45%]">
-                    <div class="text-[10px] md:text-[12px] font-medium lg:text-[14px]" >${elem.name}</div>
+                    <div class="text-[10px] md:text-[12px] font-medium lg:text-[14px] w-[80%] truncate " >${elem.name}</div>
                     <div class="static-infos flex  gap-[2px] lg:gap-1">
                         <div >
                             <div class=" text-[6px] md:text-[8px] lg:text-[10px] font-normal" >PAC</div>
@@ -552,7 +557,7 @@ function addToFormation(index,id) {
   console.log("index  " +index)
   console.log("id "+id)
   let card = document.getElementById(id);
-  console.log(card)
+  console.log(suggest[index])
   
 
   if (suggest[index].position=="GK") {
@@ -570,7 +575,7 @@ function addToFormation(index,id) {
                            </div>
                        </div>              
                        <div class="flex flex-col items-center h-[45%]">
-                           <div class="text-[9px]  md:text-[12px] font-medium md:mt-[-4px] " >${suggest[index].name}</div>
+                           <div class="text-[9px]  md:text-[12px] font-medium md:mt-[-4px] w-[80%] truncate  " >${suggest[index].name}</div>
                            <div class="static-infos flex  gap-[1px] md:mt-[-2px] ">
                                <div >
                                    <div class=" text-[5px] md:text-[8px]  font-normal" >Pos</div>
@@ -620,7 +625,7 @@ function addToFormation(index,id) {
                     </div>
                 </div>              
                 <div class="flex flex-col items-center h-[45%]">
-                    <div class="text-[9px]  md:text-[12px] font-medium md:mt-[-4px] " >${suggest[index].name}</div>
+                    <div class="text-[9px]  md:text-[12px] font-medium md:mt-[-4px] w-[80%] truncate  " >${suggest[index].name}</div>
                     <div class="static-infos flex  gap-[1px] md:mt-[-2px] ">
                         <div >
                             <div class=" text-[5px] md:text-[8px]  font-normal" >Pac</div>
@@ -654,10 +659,73 @@ function addToFormation(index,id) {
                 </div>              
             </div>
         </div>`;
-
 }
 document.querySelector(".suggestion").classList.add("hidden") 
+// here i remove the player choosen fron the players and add it to the main players
+ mainplayers.push(suggest[index]);
+ removePlayer(players , suggest[index] )
+
 }
+
+
+
+function removePlayer(array , player) {
+  let index = array.indexOf(player);
+  if (index !== -1) {
+    array.splice(index, 1);
+   }
+}
+
+document.getElementById("playerForm").addEventListener('submit', (e)=>{
+  e.preventDefault();
+  let player = null;
+   let position = playerModal.querySelector("#position").value
+
+
+  if(position == "GK"){
+    player = {
+      name: playerModal.querySelector("#name").value,
+      nationality: playerModal.querySelector("#nationality").value,
+      club: playerModal.querySelector("#club").value,
+      position: playerModal.querySelector("#position").value,
+      photo: playerModal.querySelector("#photo").value,
+      flag: playerModal.querySelector("#flag").value,
+      logo: playerModal.querySelector("#logo").value,
+      diving: playerModal.querySelector("#diving").value,
+      handling: playerModal.querySelector("#handling").value,
+      reflexes: playerModal.querySelector("#reflexes").value,
+      positioning: playerModal.querySelector("#positioning").value,
+      kicking: playerModal.querySelector("#kicking").value,
+      speed: playerModal.querySelector("#speed").value,
+      rating: playerModal.querySelector("#rating").value
+    }
+
+  } else {
+    player = {
+      name: playerModal.querySelector("#name").value,
+      nationality: playerModal.querySelector("#nationality").value,
+      club: playerModal.querySelector("#club").value,
+      position: playerModal.querySelector("#position").value,
+      photo: playerModal.querySelector("#photo").value,
+      flag: playerModal.querySelector("#flag").value,
+      logo: playerModal.querySelector("#logo").value,
+      physical: playerModal.querySelector("#physical").value,
+      defending: playerModal.querySelector("#defending").value,
+      dribbling: playerModal.querySelector("#dribbling").value,
+      passing: playerModal.querySelector("#passing").value,
+      shooting: playerModal.querySelector("#shooting").value,
+      pace: playerModal.querySelector("#pace").value,
+      rating: playerModal.querySelector("#rating").value
+    }
+  }
+
+  players.push(player)
+  console.log(players[(players.length)-1])
+  playerModal.classList.add('hidden')
+    
+})
+
+
 
 // if (suggest[index].position=="GK") {
 //   card.innerHTML =`<div class="relative h-[100px] w-[90px] md:h-[140px] md:w-[110px] lg:h-[180px] lg:w-[150px]">
