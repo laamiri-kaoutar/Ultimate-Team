@@ -404,6 +404,7 @@ let playerModal = document.getElementById("playerModal")
 let btnNewPlayer = document.getElementById("newPlayer");
 let suggest =[];
 let mainplayers =[];
+let substitutes =[];
 //  this is the new player button removing the hiiden of the modale
 document.getElementById("newPlayer").addEventListener('click', () => playerModal.classList.remove('hidden') )
 //  this is the cancel button adding the hiiden of the modale
@@ -428,22 +429,314 @@ playerPosition.addEventListener('change', function () {
     }
   });
 
+
 // i suggest players here
-function suggestPlayers(pos = "all" ) {
-    let id = event.currentTarget.id;
-    console.log(id)
+function suggestPlayers(pos ) {
+    
     document.querySelector(".suggestion").classList.remove("hidden")
     if (pos== "all") {
-        displayPlayers(players,id);
-         return
+        displayPlayers(players);
+       
     } else {
+        let id = event.currentTarget.id;
         suggest= players.filter(player => player.position.toLowerCase() === pos.toLowerCase())
         console.log(id)
-        displayPlayers(suggest ,id);
+        displaySuggestions(suggest ,id);
     }   
 }  
 
-function displayPlayers(param ,id) {
+
+function displayPlayers(param) {
+ 
+    const suggestedPlayers = document.querySelector(".suggested-players");
+    suggestedPlayers.innerHTML=``;
+    param.forEach((elem ,index) => {
+        if (elem.position=="GK") {
+            suggestedPlayers.innerHTML +=`<div  class="relative h-[100px] w-[90px] md:h-[140px] md:w-[110px] lg:h-[180px] lg:w-[150px]">
+            <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
+            <div onclick=" addSubstitutes(${index})" class="absolute  inset-0 flex flex-col ">
+                <div class="flex h-[50%] justify-between">
+                    <div class="w-[20%]  pt-1 pl-2 md:pt-3  lg:pt-4 lg:pl-3">
+                        <div class="text-[18px] md:text-[20px] font-bold">${elem.rating}</div>
+                        <div class="text-[14px] md:text-[16px] font-semibold font-mono mt-[-7px]">${elem.position}</div>
+                    </div>
+                    <div class="w-[80%]" >
+                        <img class="h-full w-full " src="${elem.photo}" alt="">
+                    </div>
+                </div>              
+                <div class="flex flex-col items-center h-[45%]">
+                    <div class="text-[10px] md:text-[12px] font-medium lg:text-[14px] w-[80%] truncate " >${elem.name}</div>
+                    <div class="static-infos flex  gap-[2px] lg:gap-1">
+                        <div >
+                            <div class=" text-[6px] md:text-[8px] lg:text-[10px] font-normal" >Pos</div>
+                            <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.positioning}</div>
+                        </div>
+                        <div>
+                            <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">Div</div>
+                            <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium" >${elem.diving}</div>
+                        </div>
+                        <div>
+                            <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">Han</div>
+                            <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.handling}</div>
+                        </div>
+                        <div>
+                            <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">Kic</div>
+                            <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.kicking}</div>
+                        </div>
+                        <div>
+                            <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">Ref</div>
+                            <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.reflexes}</div>
+                        </div>
+                        <div>
+                            <div class="text-[6px]  md:text-[8px] lg:text-[10px] font-normal">Spe</div>
+                            <div class=" mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.speed}</div>
+                        </div>
+                    </div>
+                    <div class="logos flex justify-center mt-[-2px] gap-1 lg:gap-[6px] items-center">
+                        <div><img class="w-2 md:w-3 lg:w-5" src="${elem.flag}" alt=""></div>
+                        <div><img class="w-2 md:w-3 lg:w-5" src="${elem.logo}" alt=""></div>
+                    </div>
+                </div>              
+            </div>
+        </div>`; 
+            
+        } else {
+          console.log(index);
+          console.log(elem.logo);
+ 
+          suggestedPlayers.innerHTML +=`<div class="relative h-[100px] w-[90px] md:h-[140px] md:w-[110px] lg:h-[180px] lg:w-[150px]">
+          <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
+          <div onclick=" addSubstitutes(${index})" class="absolute  inset-0 flex flex-col ">
+              <div class="flex h-[50%] justify-between">
+                  <div class="w-[20%]  pt-1 pl-2 md:pt-3  lg:pt-4 lg:pl-3">
+                      <div class="text-[18px] md:text-[20px] font-bold">${elem.rating}</div>
+                      <div class="text-[14px] md:text-[16px] font-semibold font-mono mt-[-7px]">${elem.position}</div>
+                  </div>
+                  <div class="w-[80%]" >
+                      <img class="h-full w-full " src="${elem.photo}" alt="">
+                  </div>
+              </div>              
+              <div class="flex flex-col items-center h-[45%]">
+                  <div class="text-[10px] md:text-[12px] font-medium lg:text-[14px] w-[80%] truncate " >${elem.name}</div>
+                  <div class="static-infos flex  gap-[2px] lg:gap-1">
+                      <div >
+                          <div class=" text-[6px] md:text-[8px] lg:text-[10px] font-normal" >PAC</div>
+                          <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.pace}</div>
+                      </div>
+                      <div>
+                          <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">SHO</div>
+                          <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium" >${elem.shooting}</div>
+                      </div>
+                      <div>
+                          <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">PAS</div>
+                          <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.passing}</div>
+                      </div>
+                      <div>
+                          <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">DRI</div>
+                          <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.dribbling}</div>
+                      </div>
+                      <div>
+                          <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">DEF</div>
+                          <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.defending}</div>
+                      </div>
+                      <div>
+                          <div class="text-[6px]  md:text-[8px] lg:text-[10px] font-normal">PHY</div>
+                          <div class=" mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.physical}</div>
+                      </div>
+                  </div>
+                  <div class="logos flex justify-center mt-[-2px] gap-1 lg:gap-[6px] items-center">
+                      <div><img class="w-2 md:w-3 lg:w-5" src="${elem.flag}" alt=""></div>
+                      <div><img class="w-2 md:w-3 lg:w-5" src="${elem.logo}" alt=""></div>
+                  </div>
+              </div>              
+          </div>
+      </div>`; 
+
+      }
+
+
+        //  else {
+        //     suggestedPlayers.innerHTML +=`<div class="relative h-[100px] w-[90px] md:h-[140px] md:w-[110px] lg:h-[180px] lg:w-[150px]">
+        //     <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
+        //     <div onclick=" addSubstitutes(${index})" class="absolute  inset-0 flex flex-col ">
+        //         <div class="flex h-[50%] justify-between">
+        //             <div class="w-[20%]  pt-1 pl-2 md:pt-3  lg:pt-4 lg:pl-3">
+        //                 <div class="text-[18px] md:text-[20px] font-bold">${elem.rating}</div>
+        //                 <div class="text-[14px] md:text-[16px] font-semibold font-mono mt-[-7px]">${elem.position}</div>
+        //             </div>
+        //             <div class="w-[80%]" >
+        //                 <img class="h-full w-full " src="${elem.photo}" alt="">
+        //             </div>
+        //         </div>              
+        //         <div class="flex flex-col items-center h-[45%]">
+        //             <div class="text-[10px] md:text-[12px] font-medium lg:text-[14px] w-[80%] truncate " >${elem.name}</div>
+        //             <div class="static-infos flex  gap-[2px] lg:gap-1">
+        //                 <div >
+        //                     <div class=" text-[6px] md:text-[8px] lg:text-[10px] font-normal" >PAC</div>
+        //                     <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.pace}</div>
+        //                 </div>
+        //                 <div>
+        //                     <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">SHO</div>
+        //                     <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium" >${elem.shooting}</div>
+        //                 </div>
+        //                 <div>
+        //                     <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">PAS</div>
+        //                     <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.passing}</div>
+        //                 </div>
+        //                 <div>
+        //                     <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">DRI</div>
+        //                     <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.dribbling}</div>
+        //                 </div>
+        //                 <div>
+        //                     <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">DEF</div>
+        //                     <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.defending}</div>
+        //                 </div>
+        //                 <div>
+        //                     <div class="text-[6px]  md:text-[8px] lg:text-[10px] font-normal">PHY</div>
+        //                     <div class=" mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.physical}</div>
+        //                 </div>
+        //             </div>
+        //             <div class="logos flex justify-center mt-[-2px] gap-1 lg:gap-[6px] items-center">
+        //                 <div><img class="w-2 md:w-3 lg:w-5" src="${elem.flag}" alt=""></div>
+        //                 <div><img class="w-2 md:w-3 lg:w-5" src="${elem.logo}" alt=""></div>
+        //             </div>
+        //         </div>              
+        //     </div>
+        // </div>`; 
+
+        // }
+
+     });
+    
+    
+}
+
+function addSubstitutes(index) {
+  substitutes.push(players[index]);
+  removePlayer(players , players[index] )
+  displaySubstitutes(); 
+  document.querySelector(".suggestion").classList.add("hidden") 
+}
+
+function removeSubstitutes(index) {
+  players.push(substitutes[index]);
+  removePlayer(substitutes , substitutes[index] )
+  displaySubstitutes(); 
+}
+
+
+
+function displaySubstitutes() {
+  const substitutesContainer = document.getElementById("substitutes");
+  substitutesContainer.innerHTML=``;
+  substitutes.forEach((player,index)=> {
+    const playerCard = document.createElement("div");
+    playerCard.className = `flex py-3  "cursor-pointer bg-zinc-50 rounded-lg shadow-md`;
+
+console.log(playerCard)
+   if(player.position !== "GK"){
+    playerCard.innerHTML = `
+            <img src=${player.photo} alt="" class="me-2 w-20 lg:w-32" />
+            <div class="flex-grow">
+              <div class="flex justify-between pe-5 flex-wrap gap-x-3 gap-y-2">
+                  <h3 class="font-bold text-xl  text-neutral-700">${player.name}</h3>
+                  <div class="flex gap-x-2">
+                  ${player.flag ? `<img src=${player.flag} class="w-7" >` : ""}
+                  ${player.logo ? `<img src=${player.logo} class="w-7" >` : ""}
+                  </div>
+              </div>
+              <div class="flex items-center gap-x-2 mt-1">
+                <span class="font-bold text-red-400">${player.position}</span>
+              </div>
+              <div class="text-[70%] mt-3 lg:text-[100%] flex items-start gap-x-6 flex-wrap">
+                  <h4 class="font-bold">More info :</h4>
+                  ${
+                    player.pace
+                      ? `<p class="font-bold text-blue-800">PAC : <span>${player.pace} |</span></p>`
+                      : ""
+                  }
+                  ${
+                    player.shooting
+                      ? `<p class="font-bold text-blue-800">SHO : <span>${player.shooting} |</span></p>`
+                      : ""
+                  }
+                  ${
+                    player.passing
+                      ? `<p class="font-bold text-blue-800">PAS : <span>${player.passing} |</span></p>`
+                      : ""
+                  }
+                  ${
+                    player.dribbling
+                      ? `<p class="font-bold text-blue-800">DRB : <span>${player.dribbling} |</span></p>`
+                      : ""
+                  }
+                  ${
+                    player.defending
+                      ? `<p class="font-bold text-blue-800">DEF : <span>${player.defending} |</span></p>`
+                      : ""
+                  }
+                  ${
+                    player.physical
+                      ? `<p class="font-bold text-blue-800">PHY : <span>${player.physical} |</span></p>`
+                      : ""
+                  }
+                  ${
+                    player.diving
+                      ? `<p class="font-bold text-blue-800">DIV : <span>${player.diving} |</span></p>`
+                      : ""
+                  }
+                  ${
+                    player.handling
+                      ? `<p class="font-bold text-blue-800">HDL : <span>${player.handling} |</span></p>`
+                      : ""
+                  }
+                  ${
+                    player.kicking
+                      ? `<p class="font-bold text-blue-800">KIK : <span>${player.kicking} |</span></p>`
+                      : ""
+                  }
+                  ${
+                    player.reflexes
+                      ? `<p class="font-bold text-blue-800">RFL : <span>${player.reflexes} |</span></p>`
+                      : ""
+                  }
+                  ${
+                    player.speed
+                      ? `<p class="font-bold text-blue-800">SPD : <span>${player.speed} |</span></p>`
+                      : ""
+                  }
+                  ${
+                    player.positioning
+                      ? `<p class="font-bold text-blue-800">POS : <span>${player.positioning} |</span></p>`
+                      : ""
+                  }
+                  <div onclick=" removeSubstitutes(${index})"><i class="fa-regular fa-square-minus"></i></div>
+              </div>
+
+            </div>
+      `;
+
+     console.log(playerCard)
+console.log("playerCard")
+
+
+
+      substitutesContainer.append(playerCard);
+
+    }  
+  }
+  )
+ 
+}
+
+{/* <div class="w-full flex justify-end px-3 mt-5">
+${
+  existName
+    ? `<img src="./assets/sync.png" class="w-7 animate-spin" >`
+    : ""}
+</div> */}
+
+function displaySuggestions(param ,id) {
   console.log(id)
     const suggestedPlayers = document.querySelector(".suggested-players");
     suggestedPlayers.innerHTML=``;
@@ -558,6 +851,9 @@ function addToFormation(index,id) {
   console.log("id "+id)
   let card = document.getElementById(id);
   console.log(suggest[index])
+  // here i remove the player choosen fron the players and add it to the main players
+ mainplayers.push(suggest[index]);
+ removePlayer(players , suggest[index] )
   
 
   if (suggest[index].position=="GK") {
@@ -654,16 +950,14 @@ function addToFormation(index,id) {
                     </div>
                     <div class="logos flex justify-center mt-[-2px] gap-1 lg:gap-[6px] items-center">
                         <div><img class="w-2 md:w-3 " src="${suggest[index].flag}" alt=""></div>
-                        <div><img class="w-2 md:w-3 " src="h${suggest[index].logo}" alt=""></div>
+                        <div><img class="w-2 md:w-3 " src="${suggest[index].logo}" alt=""></div>
                     </div>
                 </div>              
             </div>
         </div>`;
 }
 document.querySelector(".suggestion").classList.add("hidden") 
-// here i remove the player choosen fron the players and add it to the main players
- mainplayers.push(suggest[index]);
- removePlayer(players , suggest[index] )
+
 
 }
 
