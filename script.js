@@ -438,7 +438,12 @@ function suggestPlayers(pos ) {
         displayPlayers(players);
        
     } else {
-        let id = event.currentTarget.id;
+
+     
+        let id = event.currentTarget.parentElement.id;
+
+        console.log(id);
+        
         suggest= players.filter(player => player.position.toLowerCase() === pos.toLowerCase())
         console.log(id)
         displaySuggestions(suggest ,id);
@@ -958,6 +963,17 @@ function addToFormation(index,id) {
 }
 document.querySelector(".suggestion").classList.add("hidden") 
 
+
+}
+
+function removeFromFormation(index,id){
+  let card = document.getElementById(id);
+  let position = mainplayers[index].position;
+
+  players.push(mainplayers[index]);
+  removePlayer(mainplayers , mainplayers[index] )
+
+  card.innerHTML=`<div onclick="suggestPlayers('${position}')" class="absolute -z-10 inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>`
 
 }
 
