@@ -450,7 +450,7 @@ function suggestPlayers(pos ) {
     }   
 }  
 
-
+// here i sugesst all the players 
 function displayPlayers(param) {
  
     const suggestedPlayers = document.querySelector(".suggested-players");
@@ -734,12 +734,7 @@ console.log("playerCard")
  
 }
 
-{/* <div class="w-full flex justify-end px-3 mt-5">
-${
-  existName
-    ? `<img src="./assets/sync.png" class="w-7 animate-spin" >`
-    : ""}
-</div> */}
+
 
 function displaySuggestions(param ,id) {
   console.log(id)
@@ -859,11 +854,13 @@ function addToFormation(index,id) {
   // here i remove the player choosen fron the players and add it to the main players
  mainplayers.push(suggest[index]);
  removePlayer(players , suggest[index] )
+ playerIndex= (mainplayers.length)-1;
+
   
 
   if (suggest[index].position=="GK") {
     card.innerHTML = `
-        <div class="relative h-[90px] w-[70px] md:h-[110px] md:w-[100px] lg:h-[130px] lg:w-[100px] duration-300 hover:scale-105">
+        <div class="relative h-[90px] w-[70px] md:h-[110px] md:w-[100px] lg:h-[130px] lg:w-[100px] duration-300 hover:scale-105 overflow-hidden hover:overflow-visible">
                    <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
                    <div class="absolute  inset-0 flex flex-col ">
                        <div class="flex h-[50%] justify-between">
@@ -909,11 +906,15 @@ function addToFormation(index,id) {
                            </div>
                        </div>              
                    </div>
+                    <div class="absolute gap-2 h-fit top-0 left-[100%]   bg-neutral-700 rounded-sm flex flex-col p-1  ">
+                      <div onclick="removeFromFormation(${playerIndex},'${id}')"><i class="fa-solid fa-trash-can-arrow-up text-red-500"></i></div>
+                      <div><i class="fa-solid fa-right-left text-emerald-600"></i></div>    
+                    </div>
                </div>`;
     
 } else {
   card.innerHTML =`
- <div class="relative h-[90px] w-[70px] md:h-[110px] md:w-[100px] lg:h-[130px] lg:w-[100px] duration-300 hover:scale-105">
+ <div class="relative h-[90px] w-[70px] md:h-[110px] md:w-[100px] lg:h-[130px] lg:w-[100px] duration-300 hover:scale-105 overflow-hidden hover:overflow-visible">
             <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
             <div class="absolute  inset-0 flex flex-col ">
                 <div class="flex h-[50%] justify-between">
@@ -958,6 +959,10 @@ function addToFormation(index,id) {
                         <div><img class="w-2 md:w-3 " src="${suggest[index].logo}" alt=""></div>
                     </div>
                 </div>              
+            </div>
+            <div class="absolute gap-2 h-fit top-0 left-[100%]   bg-neutral-700 rounded-sm flex flex-col p-1  ">
+              <div onclick="removeFromFormation(${playerIndex},'${id}')"><i class="fa-solid fa-trash-can-arrow-up text-red-500"></i></div>
+              <div><i class="fa-solid fa-right-left text-emerald-600"></i></div>    
             </div>
         </div>`;
 }
