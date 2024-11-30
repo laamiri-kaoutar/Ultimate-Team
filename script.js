@@ -908,13 +908,13 @@ function addToFormation(index,id) {
                    </div>
                     <div class="absolute gap-2 h-fit top-0 left-[100%]   bg-neutral-700 rounded-sm flex flex-col p-1  ">
                       <div onclick="removeFromFormation(${playerIndex},'${id}')"><i class="fa-solid fa-trash-can-arrow-up text-red-500"></i></div>
-                      <div><i class="fa-solid fa-right-left text-emerald-600"></i></div>    
+                      <div onclick="suggestSubstitutes(${playerIndex},'${id}')" ><i class="fa-solid fa-right-left text-emerald-600"></i></div>    
                     </div>
                </div>`;
     
 } else {
   card.innerHTML =`
- <div class="relative h-[90px] w-[70px] md:h-[110px] md:w-[100px] lg:h-[130px] lg:w-[100px] duration-300 hover:scale-105 overflow-hidden hover:overflow-visible">
+ <div class="relative h-[90px] w-[70px] md:h-[110px] md:w-[100px] lg:h-[130px] lg:w-[100px] duration-300 hover:scale-105 overflow-visible">
             <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
             <div class="absolute  inset-0 flex flex-col ">
                 <div class="flex h-[50%] justify-between">
@@ -962,7 +962,7 @@ function addToFormation(index,id) {
             </div>
             <div class="absolute gap-2 h-fit top-0 left-[100%]   bg-neutral-700 rounded-sm flex flex-col p-1  ">
               <div onclick="removeFromFormation(${playerIndex},'${id}')"><i class="fa-solid fa-trash-can-arrow-up text-red-500"></i></div>
-              <div><i class="fa-solid fa-right-left text-emerald-600"></i></div>    
+              <div onclick="suggestSubstitutes(${playerIndex},'${id}')"><i class="fa-solid fa-right-left text-emerald-600"></i></div>    
             </div>
         </div>`;
 }
@@ -980,6 +980,247 @@ function removeFromFormation(index,id){
 
   card.innerHTML=`<div onclick="suggestPlayers('${position}')" class="absolute -z-10 inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>`
 
+}
+
+function replasePlayer(id , playerIndex , substituteIndex) {
+  const card = document.getElementById(id)
+  let temp = mainplayers[playerIndex];
+  mainplayers[playerIndex]= substitutes[substituteIndex];
+  substitutes[substituteIndex] =temp;
+
+  if (mainplayers[playerIndex].position=="GK") {
+    card.innerHTML = `
+        <div class="relative h-[90px] w-[70px] md:h-[110px] md:w-[100px] lg:h-[130px] lg:w-[100px] duration-300 hover:scale-105 overflow-hidden hover:overflow-visible">
+                   <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
+                   <div class="absolute  inset-0 flex flex-col ">
+                       <div class="flex h-[50%] justify-between">
+                           <div class="w-[20%]  pt-1 pl-[6px]   md:pt-2 md:pl-2">
+                               <div class="text-[15px] md:text-[18px] font-bold">${mainplayers[playerIndex].rating}</div>
+                               <div class="text-[12px] md:text-[16px] font-semibold font-mono mt-[-7px]">${mainplayers[playerIndex].position}</div>
+                           </div>
+                           <div class="w-[80%]" >
+                               <img class="h-full w-full " src="${mainplayers[playerIndex].photo}" alt="">
+                           </div>
+                       </div>              
+                       <div class="flex flex-col items-center h-[45%]">
+                           <div class="text-[9px]  md:text-[12px] font-medium md:mt-[-4px] w-[80%] truncate  " >${mainplayers[playerIndex].name}</div>
+                           <div class="static-infos flex  gap-[1px] md:mt-[-2px] ">
+                               <div >
+                                   <div class=" text-[5px] md:text-[8px]  font-normal" >Pos</div>
+                                   <div class="mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px]  font-medium">${mainplayers[playerIndex].positioning}</div>
+                               </div>
+                               <div>
+                                   <div class="text-[5px] md:text-[8px]  font-normal">Div</div>
+                                   <div class="mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px]  font-medium" >${mainplayers[playerIndex].diving}</div>
+                               </div>
+                               <div>
+                                   <div class="text-[5px] md:text-[8px]  font-normal">Han</div>
+                                   <div class="mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px]  font-medium">${mainplayers[playerIndex].handling}</div>
+                               </div>
+                               <div>
+                                   <div class="text-[5px] md:text-[8px]  font-normal">Kic</div>
+                                   <div class="mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px] font-medium">${mainplayers[playerIndex].kicking}</div>
+                               </div>
+                               <div>
+                                   <div class="text-[5px] md:text-[8px]  font-normal">Ref</div>
+                                   <div class="mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px]  font-medium">${mainplayers[playerIndex].reflexes}</div>
+                               </div>
+                               <div>
+                                   <div class="text-[5px]  md:text-[8px]  font-normal">Spe</div>
+                                   <div class=" mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px]  font-medium">${mainplayers[playerIndex].speed}</div>
+                               </div>
+                           </div>
+                           <div class="logos flex justify-center mt-[-2px] gap-1 lg:gap-[6px] items-center">
+                               <div><img class="w-2 md:w-3 " src="${mainplayers[playerIndex].flag}" alt=""></div>
+                               <div><img class="w-2 md:w-3 " src="h${mainplayers[playerIndex].logo}" alt=""></div>
+                           </div>
+                       </div>              
+                   </div>
+                    <div class="absolute gap-2 h-fit top-0 left-[100%]   bg-neutral-700 rounded-sm flex flex-col p-1  ">
+                      <div onclick="removeFromFormation(${playerIndex},'${id}')"><i class="fa-solid fa-trash-can-arrow-up text-red-500"></i></div>
+                      <div onclick="suggestSubstitutes(${playerIndex},'${id}')" ><i class="fa-solid fa-right-left text-emerald-600"></i></div>    
+                    </div>
+               </div>`;
+    
+} else {
+  card.innerHTML =`
+ <div class="relative h-[90px] w-[70px] md:h-[110px] md:w-[100px] lg:h-[130px] lg:w-[100px] duration-300 hover:scale-105 overflow-hidden hover:overflow-visible">
+            <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
+            <div class="absolute  inset-0 flex flex-col ">
+                <div class="flex h-[50%] justify-between">
+                    <div class="w-[20%]  pt-1 pl-[6px]   md:pt-2 md:pl-2">
+                        <div class="text-[15px] md:text-[18px] font-bold">${mainplayers[playerIndex].rating}</div>
+                        <div class="text-[12px] md:text-[16px] font-semibold font-mono mt-[-7px]">${mainplayers[playerIndex].position}</div>
+                    </div>
+                    <div class="w-[80%]" >
+                        <img class="h-full w-full " src="${mainplayers[playerIndex].photo}" alt="">
+                    </div>
+                </div>              
+                <div class="flex flex-col items-center h-[45%]">
+                    <div class="text-[9px]  md:text-[12px] font-medium md:mt-[-4px] w-[80%] truncate  " >${mainplayers[playerIndex].name}</div>
+                    <div class="static-infos flex  gap-[1px] md:mt-[-2px] ">
+                        <div >
+                            <div class=" text-[5px] md:text-[8px]  font-normal" >Pac</div>
+                            <div class="mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px]  font-medium">${mainplayers[playerIndex].pace}</div>
+                        </div>
+                        <div>
+                            <div class="text-[5px] md:text-[8px]  font-normal">Sho</div>
+                            <div class="mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px]  font-medium" >${mainplayers[playerIndex].shooting}</div>
+                        </div>
+                        <div>
+                            <div class="text-[5px] md:text-[8px]  font-normal">Pas</div>
+                            <div class="mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px]  font-medium">${mainplayers[playerIndex].passing}</div>
+                        </div>
+                        <div>
+                            <div class="text-[5px] md:text-[8px]  font-normal">Dri</div>
+                            <div class="mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px] font-medium">${mainplayers[playerIndex].dribbling}</div>
+                        </div>
+                        <div>
+                            <div class="text-[5px] md:text-[8px]  font-normal">Def</div>
+                            <div class="mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px]  font-medium">${mainplayers[playerIndex].defending}</div>
+                        </div>
+                        <div>
+                            <div class="text-[5px]  md:text-[8px]  font-normal">Phy</div>
+                            <div class=" mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px]  font-medium">${mainplayers[playerIndex].physical}</div>
+                        </div>
+                    </div>
+                    <div class="logos flex justify-center mt-[-2px] gap-1 lg:gap-[6px] items-center">
+                        <div><img class="w-2 md:w-3 " src="${mainplayers[playerIndex].flag}" alt=""></div>
+                        <div><img class="w-2 md:w-3 " src="${mainplayers[playerIndex].logo}" alt=""></div>
+                    </div>
+                </div>              
+            </div>
+            <div class="absolute gap-2 h-fit top-0 left-[100%]   bg-neutral-700 rounded-sm flex flex-col p-1  ">
+              <div onclick="removeFromFormation(${playerIndex},'${id}')"><i class="fa-solid fa-trash-can-arrow-up text-red-500"></i></div>
+              <div onclick="suggestSubstitutes(${playerIndex},'${id}')" ><i class="fa-solid fa-right-left text-emerald-600"></i></div>    
+            </div>
+        </div>`;
+}
+displaySubstitutes();
+document.querySelector(".suggestion").classList.add("hidden") 
+
+  
+}
+
+function suggestSubstitutes( playerIndex ,id ) {
+
+  let substituteIndex = null;
+  
+  let table = substitutes.filter(player => player.position.toLowerCase() === position.toLowerCase())
+  if (table == null) {
+    alert("No Substitute with position "+mainplayers[playerIndex].position)
+    return; 
+  }
+
+  const suggestedPlayers = document.querySelector(".suggested-players");
+  suggestedPlayers.innerHTML=``;
+  table.forEach((elem ,index) => {
+    substituteIndex = substitutes.findIndex(elem)
+      if (elem.position=="GK") {
+          suggestedPlayers.innerHTML +=`<div  class="relative h-[100px] w-[90px] md:h-[140px] md:w-[110px] lg:h-[180px] lg:w-[150px]">
+          <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
+          <div onclick="replasePlayer('${id}',${playerIndex},${substituteIndex})" class="absolute  inset-0 flex flex-col ">
+              <div class="flex h-[50%] justify-between">
+                  <div class="w-[20%]  pt-1 pl-2 md:pt-3  lg:pt-4 lg:pl-3">
+                      <div class="text-[18px] md:text-[20px] font-bold">${elem.rating}</div>
+                      <div class="text-[14px] md:text-[16px] font-semibold font-mono mt-[-7px]">${elem.position}</div>
+                  </div>
+                  <div class="w-[80%]" >
+                      <img class="h-full w-full " src="${elem.photo}" alt="">
+                  </div>
+              </div>              
+              <div class="flex flex-col items-center h-[45%]">
+                  <div class="text-[10px] md:text-[12px] font-medium lg:text-[14px] w-[80%] truncate " >${elem.name}</div>
+                  <div class="static-infos flex  gap-[2px] lg:gap-1">
+                      <div >
+                          <div class=" text-[6px] md:text-[8px] lg:text-[10px] font-normal" >Pos</div>
+                          <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.positioning}</div>
+                      </div>
+                      <div>
+                          <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">Div</div>
+                          <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium" >${elem.diving}</div>
+                      </div>
+                      <div>
+                          <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">Han</div>
+                          <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.handling}</div>
+                      </div>
+                      <div>
+                          <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">Kic</div>
+                          <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.kicking}</div>
+                      </div>
+                      <div>
+                          <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">Ref</div>
+                          <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.reflexes}</div>
+                      </div>
+                      <div>
+                          <div class="text-[6px]  md:text-[8px] lg:text-[10px] font-normal">Spe</div>
+                          <div class=" mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.speed}</div>
+                      </div>
+                  </div>
+                  <div class="logos flex justify-center mt-[-2px] gap-1 lg:gap-[6px] items-center">
+                      <div><img class="w-2 md:w-3 lg:w-5" src="${elem.flag}" alt=""></div>
+                      <div><img class="w-2 md:w-3 lg:w-5" src="${elem.logo}" alt=""></div>
+                  </div>
+              </div>              
+          </div>
+      </div>`; 
+          
+      } else {
+          suggestedPlayers.innerHTML +=`<div onclick="replasePlayer('${id}',${playerIndex},${substituteIndex})" class="relative h-[100px] w-[90px] md:h-[140px] md:w-[110px] lg:h-[180px] lg:w-[150px]">
+          <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
+          <div class="absolute  inset-0 flex flex-col ">
+              <div class="flex h-[50%] justify-between">
+                  <div class="w-[20%]  pt-1 pl-2 md:pt-3  lg:pt-4 lg:pl-3">
+                      <div class="text-[18px] md:text-[20px] font-bold">${elem.rating}</div>
+                      <div class="text-[14px] md:text-[16px] font-semibold font-mono mt-[-7px]">${elem.position}</div>
+                  </div>
+                  <div class="w-[80%]" >
+                      <img class="h-full w-full " src="${elem.photo}" alt="">
+                  </div>
+              </div>              
+              <div class="flex flex-col items-center h-[45%]">
+                  <div class="text-[10px] md:text-[12px] font-medium lg:text-[14px] w-[80%] truncate " >${elem.name}</div>
+                  <div class="static-infos flex  gap-[2px] lg:gap-1">
+                      <div >
+                          <div class=" text-[6px] md:text-[8px] lg:text-[10px] font-normal" >PAC</div>
+                          <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.pace}</div>
+                      </div>
+                      <div>
+                          <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">SHO</div>
+                          <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium" >${elem.shooting}</div>
+                      </div>
+                      <div>
+                          <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">PAS</div>
+                          <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.passing}</div>
+                      </div>
+                      <div>
+                          <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">DRI</div>
+                          <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.dribbling}</div>
+                      </div>
+                      <div>
+                          <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">DEF</div>
+                          <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.defending}</div>
+                      </div>
+                      <div>
+                          <div class="text-[6px]  md:text-[8px] lg:text-[10px] font-normal">PHY</div>
+                          <div class=" mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${elem.physical}</div>
+                      </div>
+                  </div>
+                  <div class="logos flex justify-center mt-[-2px] gap-1 lg:gap-[6px] items-center">
+                      <div><img class="w-2 md:w-3 lg:w-5" src="${elem.flag}" alt=""></div>
+                      <div><img class="w-2 md:w-3 lg:w-5" src="${elem.logo}" alt=""></div>
+                  </div>
+              </div>              
+          </div>
+      </div>`; 
+
+      }
+
+   });
+
+   document.querySelector(".suggestion").classList.remove("hidden")
+
+  
 }
 
 
