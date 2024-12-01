@@ -1244,6 +1244,21 @@ function removePlayer(array , player) {
     array.splice(index, 1);
    }
 }
+function emptyForm() {
+  const ids = [
+      "#name", "#nationality", "#club", "#position", "#photo", "#flag", 
+      "#logo", "#diving", "#handling", "#reflexes", "#positioning", 
+      "#kicking", "#speed", "#rating", "#physical", "#defending", 
+      "#dribbling", "#passing", "#shooting", "#pace"
+  ];
+
+  ids.forEach(id => {
+      playerModal.querySelector(id).value = "";
+  });
+}
+
+
+
 
 document.getElementById("playerForm").addEventListener('submit', (e)=>{
   e.preventDefault();
