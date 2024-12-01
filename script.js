@@ -641,7 +641,8 @@ function displaySubstitutes() {
 console.log(playerCard)
    if(player.position !== "GK"){
     playerCard.innerHTML = `
-            <img src=${player.photo} alt="" class="me-2 w-20 lg:w-32" />
+    
+            <img src=${player.photo} alt="" class="w-20 " />
             <div class="flex-grow">
               <div class="flex justify-between pe-5 flex-wrap gap-x-3 gap-y-2">
                   <h3 class="font-bold text-xl  text-neutral-700">${player.name}</h3>
@@ -651,75 +652,30 @@ console.log(playerCard)
                   </div>
               </div>
               <div class="flex items-center gap-x-2 mt-1">
-                <span class="font-bold text-red-400">${player.position}</span>
+                <span class="font-bold text-emerald-800">${player.position}</span>
               </div>
               <div class="text-[70%] mt-3 lg:text-[100%] flex items-start gap-x-6 flex-wrap">
-                  <h4 class="font-bold">More info :</h4>
-                  ${
-                    player.pace
-                      ? `<p class="font-bold text-blue-800">PAC : <span>${player.pace} |</span></p>`
-                      : ""
-                  }
-                  ${
-                    player.shooting
-                      ? `<p class="font-bold text-blue-800">SHO : <span>${player.shooting} |</span></p>`
-                      : ""
-                  }
-                  ${
-                    player.passing
-                      ? `<p class="font-bold text-blue-800">PAS : <span>${player.passing} |</span></p>`
-                      : ""
-                  }
-                  ${
-                    player.dribbling
-                      ? `<p class="font-bold text-blue-800">DRB : <span>${player.dribbling} |</span></p>`
-                      : ""
-                  }
-                  ${
-                    player.defending
-                      ? `<p class="font-bold text-blue-800">DEF : <span>${player.defending} |</span></p>`
-                      : ""
-                  }
-                  ${
-                    player.physical
-                      ? `<p class="font-bold text-blue-800">PHY : <span>${player.physical} |</span></p>`
-                      : ""
-                  }
-                  ${
-                    player.diving
-                      ? `<p class="font-bold text-blue-800">DIV : <span>${player.diving} |</span></p>`
-                      : ""
-                  }
-                  ${
-                    player.handling
-                      ? `<p class="font-bold text-blue-800">HDL : <span>${player.handling} |</span></p>`
-                      : ""
-                  }
-                  ${
-                    player.kicking
-                      ? `<p class="font-bold text-blue-800">KIK : <span>${player.kicking} |</span></p>`
-                      : ""
-                  }
-                  ${
-                    player.reflexes
-                      ? `<p class="font-bold text-blue-800">RFL : <span>${player.reflexes} |</span></p>`
-                      : ""
-                  }
-                  ${
-                    player.speed
-                      ? `<p class="font-bold text-blue-800">SPD : <span>${player.speed} |</span></p>`
-                      : ""
-                  }
-                  ${
-                    player.positioning
-                      ? `<p class="font-bold text-blue-800">POS : <span>${player.positioning} |</span></p>`
-                      : ""
-                  }
-                  <div onclick=" removeSubstitutes(${index})"><i class="fa-regular fa-square-minus"></i></div>
+                 
+                 <p class="font-bold text-slate-700">PAC : <span>${player.pace} |</span></p>
+                 <p class="font-bold text-slate-700">SHO : <span>${player.shooting} |</span></p>
+                 <p class="font-bold text-slate-700">PAS : <span>${player.passing} |</span></p>
+                 <p class="font-bold text-slate-700">DRB : <span>${player.dribbling} |</span></p>
+                 <p class="font-bold text-slate-700">DEF : <span>${player.defending} |</span></p>     
+                 <p class="font-bold text-slate-700">PHY : <span>${player.physical} |</span></p> 
               </div>
+              <div onclick=" removeSubstitutes(${index})"><i class="fa-regular fa-square-minus font-extrabold text-red-500 justify-end"></i></div>
+
 
             </div>
       `;
+
+      // <p class="font-bold text-blue-800">DIV : <span>${player.diving} |</span></p>
+      // <p class="font-bold text-blue-800">HDL : <span>${player.handling} |</span></p>
+      // <p class="font-bold text-blue-800">KIK : <span>${player.kicking} |</span></p>
+      // <p class="font-bold text-blue-800">RFL : <span>${player.reflexes} |</span></p>
+      // <p class="font-bold text-blue-800">SPD : <span>${player.speed} |</span></p>
+      // <p class="font-bold text-blue-800">POS : <span>${player.positioning} |</span></p>
+
 
      console.log(playerCard)
 console.log("playerCard")
@@ -914,7 +870,7 @@ function addToFormation(index,id) {
     
 } else {
   card.innerHTML =`
- <div class="relative h-[90px] w-[70px] md:h-[110px] md:w-[100px] lg:h-[130px] lg:w-[100px] duration-300 hover:scale-105 overflow-visible">
+ <div class="relative h-[90px] w-[70px] md:h-[110px] md:w-[100px] lg:h-[130px] lg:w-[100px] duration-300 hover:scale-105 overflow-hidden hover:overflow-visible">
             <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
             <div class="absolute  inset-0 flex flex-col ">
                 <div class="flex h-[50%] justify-between">
