@@ -1289,7 +1289,12 @@ document.getElementById("playerForm").addEventListener('submit', (e)=>{
   }
 
   if (validateForm(player)) {
-    players.push(player)
+    let exist = players.indexOf(player)
+    if (exist !== -1 ) {
+      alert("The player you are trying to add already exists.");
+    } else {
+      players.push(player)
+    }
     console.log(players[(players.length)-1])
     playerModal.classList.add('hidden')
     
@@ -1299,8 +1304,43 @@ document.getElementById("playerForm").addEventListener('submit', (e)=>{
 })
 
 function validateForm(player) {
+
+  console.log(player);
+
+  
+  let playerKeys = Object.keys(player)
+  let staticKeys = playerKeys.filter(key => !isNaN(Number(player[key])))
+  console.log(playerKeys);
+  console.log(staticKeys);
+
+  for (const key of playerKeys) {
+    
+    
+    
+    if ( player[key] === "" ) {
+      alert("Please fill in all fields.");
+      return false;
+    }
+   }
+
+  for (const key of staticKeys) {
+    console.log(player[key]);
+    console.log(player[key]<= 0 ||  player[key] > 100 );
+    
+    
+    if ( player[key]< 0 ||  player[key] > 100 ) {
+      alert(`Invalid value for ${key}. It should be a number between 0 and 100.`);
+      return false;
+    }
+   }
+
+
+
+
   let namesRegex = /^[a-zA-Z\s.'-]{2,30}$/ ;
-  let urlRegex = /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\-]*)*$/;
+  // let urlRegex = /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\-]*)*$/;
+  const urlRegex = /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\-\.]*)*$/;
+
 
   if (!namesRegex.test(player.name)) {
     alert("Invalid name. please enter a valid name");
@@ -1316,6 +1356,8 @@ if (!namesRegex.test(player.club)) {
 }
 
 if ( !urlRegex.test(player.photo)) {
+  console.log(!urlRegex.test(player.photo));
+  
     console.log(player.photo);
     
     alert("Invalid photo URL.");
@@ -1330,16 +1372,7 @@ if ( !urlRegex.test(player.logo)) {
     return false;
 }
 
-let playerKeys = Object.keys(player)
-let staticKeys = playerKeys.filter(key => typeof player[key] === "number")
- 
 
-for (let key of staticKeys) {
-  if ( player[key]< 0 ||  player[key] > 100 ) {
-    alert(`Invalid value for ${key}. It should be a number between 0 and 100.`);
-    return false;
-  }
- }
 
  return true;
 
