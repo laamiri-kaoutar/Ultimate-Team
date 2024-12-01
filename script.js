@@ -1104,18 +1104,31 @@ document.querySelector(".suggestion").classList.add("hidden")
 
 function suggestSubstitutes( playerIndex ,id ) {
 
+  if (substitutes.length == 0) {
+    alert("there is No Substitutes ")
+    return; 
+  }
+
   let substituteIndex = null;
   
-  let table = substitutes.filter(player => player.position.toLowerCase() === position.toLowerCase())
-  if (table == null) {
+  let table = substitutes.filter(player => player.position.toLowerCase() === mainplayers[playerIndex].position.toLowerCase())
+  // let table = substitutes.filter(mainplayers[playerIndex].position);
+  console.log(table.length == 0);
+  
+  if (table.length == 0) {
     alert("No Substitute with position "+mainplayers[playerIndex].position)
     return; 
   }
 
   const suggestedPlayers = document.querySelector(".suggested-players");
   suggestedPlayers.innerHTML=``;
+  console.log(table);
+  console.log(substitutes);
+  
   table.forEach((elem ,index) => {
-    substituteIndex = substitutes.findIndex(elem)
+  console.log(elem);
+
+    substituteIndex = substitutes.indexOf(elem)
       if (elem.position=="GK") {
           suggestedPlayers.innerHTML +=`<div  class="relative h-[100px] w-[90px] md:h-[140px] md:w-[110px] lg:h-[180px] lg:w-[150px]">
           <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
@@ -1275,11 +1288,63 @@ document.getElementById("playerForm").addEventListener('submit', (e)=>{
     }
   }
 
-  players.push(player)
-  console.log(players[(players.length)-1])
-  playerModal.classList.add('hidden')
+  if (validateForm(player)) {
+    players.push(player)
+    console.log(players[(players.length)-1])
+    playerModal.classList.add('hidden')
+    
+  }
+ 
     
 })
+
+function validateForm(player) {
+  let namesRegex = /^[a-zA-Z\s.'-]{2,30}$/ ;
+  let urlRegex = /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\-]*)*$/;
+
+  if (!namesRegex.test(player.name)) {
+    alert("Invalid name. please enter a valid name");
+    return false;
+}
+if (!namesRegex.test(player.nationality)) {
+    alert("Invalid nationality. please enter a valid nationality");
+    return false;
+}
+if (!namesRegex.test(player.club)) {
+    alert("Invalid club. please enter a valid club.");
+    return false;
+}
+
+if ( !urlRegex.test(player.photo)) {
+    console.log(player.photo);
+    
+    alert("Invalid photo URL.");
+    return false;
+}
+if ( !urlRegex.test(player.flag)) {
+    alert("Invalid flag URL.");
+    return false;
+}
+if ( !urlRegex.test(player.logo)) {
+    alert("Invalid logo URL.");
+    return false;
+}
+
+let playerKeys = Object.keys(player)
+let staticKeys = playerKeys.filter(key => typeof player[key] === "number")
+ 
+
+for (let key of staticKeys) {
+  if ( player[key]< 0 ||  player[key] > 100 ) {
+    alert(`Invalid value for ${key}. It should be a number between 0 and 100.`);
+    return false;
+  }
+ }
+
+ return true;
+
+  
+}
 
 
 
