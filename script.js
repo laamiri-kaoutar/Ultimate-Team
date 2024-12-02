@@ -636,37 +636,38 @@ function displaySubstitutes() {
   substitutesContainer.innerHTML=``;
   substitutes.forEach((player,index)=> {
     const playerCard = document.createElement("div");
-    playerCard.className = `flex py-3  "cursor-pointer bg-zinc-50 rounded-lg shadow-md`;
+    playerCard.className = `flex py-3 w-full  "cursor-pointer bg-zinc-50 rounded-lg shadow-md`;
 
 console.log(playerCard)
    if(player.position !== "GK"){
     playerCard.innerHTML = `
-    
-            <img src=${player.photo} alt="" class="w-20 " />
-            <div class="flex-grow">
-              <div class="flex justify-between pe-5 flex-wrap gap-x-3 gap-y-2">
+               <div class="flex flex-col  lg:flex-col  ">
+                 <img src="${player.photo}" alt="" class=" " />
+                 <div class="flex p-2 flex-row  justify-between lg:flex-row ">
+                     <span class="font-bold text-lg text-emerald-800">${player.position}</span>
+                     <img src="${player.flag}" class="w-5" >
+                     <img src="${player.logo}" class="w-5" >
+                 </div>
+               </div>
+            <div class="flex-grow flex justify-evenly flex-col p-2">
+              <div class="flex justify-between  flex-wrap gap-2 items-center sm:gap-4">
                   <h3 class="font-bold text-xl  text-neutral-700">${player.name}</h3>
-                  <div class="flex gap-x-2">
-                  ${player.flag ? `<img src=${player.flag} class="w-7" >` : ""}
-                  ${player.logo ? `<img src=${player.logo} class="w-7" >` : ""}
-                  </div>
+                  <div onclick=" removeSubstitutes(${index})"><i class="fa-regular fa-square-minus font-extrabold text-red-500 text-xl justify-end"></i></div>
               </div>
-              <div class="flex items-center gap-x-2 mt-1">
-                <span class="font-bold text-emerald-800">${player.position}</span>
+              <div class="text-[85%]  flex gap-x-6 flex-wrap">      
+                <div class=" flex flex-col gap-2 lg:flex-col">
+                    <p class="font-bold text-slate-700">PAC : <span>${player.pace}|</span></p>
+                    <p class="font-bold text-slate-700">SHO : <span>${player.shooting}|</span></p>
+                    <p class="font-bold text-slate-700">PAS : <span>${player.passing}|</span></p>
+                </div>
+                <div class=" flex flex-col  gap-2 lg:flex-col">
+                    <p class="font-bold text-slate-700">DRB : <span>${player.dribbling}|</span></p>
+                    <p class="font-bold text-slate-700">DEF : <span>${player.defending}|</span></p>     
+                    <p class="font-bold text-slate-700">PHY : <span>${player.physical}|</span></p>
+                </div>
               </div>
-              <div class="text-[70%] mt-3 lg:text-[100%] flex items-start gap-x-6 flex-wrap">
-                 
-                 <p class="font-bold text-slate-700">PAC : <span>${player.pace} |</span></p>
-                 <p class="font-bold text-slate-700">SHO : <span>${player.shooting} |</span></p>
-                 <p class="font-bold text-slate-700">PAS : <span>${player.passing} |</span></p>
-                 <p class="font-bold text-slate-700">DRB : <span>${player.dribbling} |</span></p>
-                 <p class="font-bold text-slate-700">DEF : <span>${player.defending} |</span></p>     
-                 <p class="font-bold text-slate-700">PHY : <span>${player.physical} |</span></p> 
-              </div>
-              <div onclick=" removeSubstitutes(${index})"><i class="fa-regular fa-square-minus font-extrabold text-red-500 justify-end"></i></div>
-
-
             </div>
+
       `;
 
       // <p class="font-bold text-blue-800">DIV : <span>${player.diving} |</span></p>
