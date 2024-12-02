@@ -14,7 +14,7 @@
 
     <main >
         <section class=" flex p-6 gap-2  flex-col items-center md:flex-row  ">
-            <div class="formation flex flex-col   justify-between items-center relative h-screen w-[95%] min-h-fit md:w-[65%] ">
+            <div class="formation flex flex-col cursor-pointer  justify-between items-center relative h-screen w-[95%] min-h-fit md:w-[65%] ">
                 <div class="absolute -z-10 inset-0"> <img class="h-full w-full" src="./images/formatiom.jpg" alt=""></div>
 
                 <div class="flex w-[80%] h-[100px] justify-between md:h-[120px] mt-12 md:mt-3">
@@ -39,15 +39,13 @@
 
              </div>
 
-            <div class="h-screen w-full rounded-md flex flex-col items-center bg-slate-50/30 bg-opacity-35 md:w-[35%]">
+            <div class="h-screen w-full rounded-md flex-grow flex flex-col items-center bg-slate-50/30 bg-opacity-35 md:w-[35%]">
                 <div class="w-full flex justify-end p-4">
                     <button id="newPlayer" type="button" class=" bg-slate-950  text-white font-semibold hover:bg-white hover:text-black px-3 py-2 rounded duration-300 ">
                         New Player
-                      </button>
-
-                     
+                      </button>   
                 </div>
-                <div class="bg-zinc-400 rounded-md bg-opacity-35 w-[90%] h-[70%] min-h-fit">
+                <div class="bg-zinc-400 rounded-md bg-opacity-35 w-[90%] h-[70%] overflow-auto">
                     <button onclick="suggestPlayers('all')"  type="button" class=" bg-slate-950  text-white font-semibold hover:bg-white hover:text-black px-3 py-2 rounded duration-300 ">
                         Add Substitute
                       </button>
@@ -55,135 +53,6 @@
                 </div>
             </div>
         </section>
-        <div class="relative h-[90px] w-[70px] md:h-[110px] md:w-[100px] lg:h-[130px] lg:w-[100px] duration-300 hover:scale-105 overflow-hidden hover:overflow-visible ">
-            <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
-            <div class="absolute  inset-0 flex flex-col ">
-                <div class="flex h-[50%] justify-between">
-                    <div class="w-[20%]  pt-1 pl-[6px]   md:pt-2 md:pl-2">
-                        <div class="text-[15px] md:text-[18px] font-bold">96</div>
-                        <div class="text-[12px] md:text-[16px] font-semibold font-mono mt-[-7px]">RW</div>
-                    </div>
-                    <div class="w-[80%]" >
-                        <img class="h-full w-full " src="https://cdn.sofifa.net/players/203/376/25_120.png" alt="">
-                    </div>
-                </div>              
-                <div class="flex flex-col items-center h-[45%]">
-                    <div class="text-[9px]  md:text-[12px] font-medium md:mt-[-4px] w-[80%] truncate " >De Bruyne gdvgvdhgvedgvédhgd</div>
-                    <div class="static-infos flex  gap-[1px] md:mt-[-2px] ">
-                        <div >
-                            <div class=" text-[5px] md:text-[8px]  font-normal" >PAC</div>
-                            <div class="mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px]  font-medium">43</div>
-                        </div>
-                        <div>
-                            <div class="text-[5px] md:text-[8px]  font-normal">SHO</div>
-                            <div class="mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px]  font-medium" >65</div>
-                        </div>
-                        <div>
-                            <div class="text-[5px] md:text-[8px]  font-normal">PAS</div>
-                            <div class="mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px]  font-medium">74</div>
-                        </div>
-                        <div>
-                            <div class="text-[5px] md:text-[8px]  font-normal">DRI</div>
-                            <div class="mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px] font-medium">45</div>
-                        </div>
-                        <div>
-                            <div class="text-[5px] md:text-[8px]  font-normal">DEF</div>
-                            <div class="mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px]  font-medium">33</div>
-                        </div>
-                        <div>
-                            <div class="text-[5px]  md:text-[8px]  font-normal">PHY</div>
-                            <div class=" mt-[-3px] md:mt-[-2px] text-[7px] md:text-[10px]  font-medium">64</div>
-                        </div>
-                    </div>
-                    <div class="logos flex justify-center mt-[-2px] gap-1 lg:gap-[6px] items-center">
-                        <div><img class="w-2 md:w-3 " src="https://cdn.sofifa.net/flags/be.png" alt=""></div>
-                        <div><img class="w-2 md:w-3 " src="https://cdn.sofifa.net/meta/team/3468/120.png" alt=""></div>
-                    </div>
-                </div>              
-            </div>
-            <div class="absolute gap-2 h-fit top-0 left-[100%]   bg-neutral-700 rounded-sm flex flex-col p-1  ">
-                <div><i class="fa-solid fa-trash-can-arrow-up text-red-500"></i></div>
-                <div><i class="fa-solid fa-right-left text-emerald-600"></i></div>    
-            </div>
-        </div>
-
-        
-        <div class="flex  w-fit cursor-pointer bg-zinc-100 rounded-lg shadow-md">
-            <div class="flex flex-col md:flex-row lg:flex-col  ">
-               <img src="https://cdn.sofifa.net/players/231/747/25_120.png" alt="" class=" " />
-               <div class="flex p-2 flex-row md:flex-col justify-between lg:flex-row ">
-                   <span class="font-bold text-lg text-emerald-800">CW</span>
-                   <img src="https://cdn.sofifa.net/flags/fr.png" class="w-7" >
-                   <img src="https://cdn.sofifa.net/meta/team/3468/120.png" class="w-7" >
-               </div>
-            </div>
-            <div class="flex-grow flex justify-evenly flex-col p-2">
-              <div class="flex justify-between  flex-wrap gap-2 items-center sm:gap-4">
-                  <h3 class="font-bold text-xl  text-neutral-700">Kylian Mbappé</h3>
-                  <div onclick=" removeSubstitutes(${index})"><i class="fa-regular fa-square-minus font-extrabold text-red-500 text-xl justify-end"></i></div>
-              </div>
-              <div class="text-[85%]  flex gap-x-6 flex-wrap">      
-                <div class=" flex flex-col md:flex-row gap-2 lg:flex-col">
-                    <p class="font-bold text-slate-700">PAC : <span>43|</span></p>
-                    <p class="font-bold text-slate-700">SHO : <span>43|</span></p>
-                    <p class="font-bold text-slate-700">PAS : <span>43|</span></p>
-                </div>
-                <div class=" flex flex-col md:flex-row gap-2 lg:flex-col">
-                    <p class="font-bold text-slate-700">DRB : <span>43|</span></p>
-                    <p class="font-bold text-slate-700">DEF : <span>43|</span></p>     
-                    <p class="font-bold text-slate-700">PHY : <span>43|</span></p>
-                </div>
-              </div>
-            </div>
-
-        </div>
-
-        <div class="flex  w-fit cursor-pointer bg-zinc-100 rounded-lg shadow-md">
-            <div class="flex flex-col md:flex-row lg:flex-col  ">
-               <img src="${player.photo}" alt="" class=" " />
-               <div class="flex p-2 flex-row md:flex-col justify-between lg:flex-row ">
-                   <span class="font-bold text-lg text-emerald-800">${player.position}</span>
-                   <img src="${player.flag}" class="" >
-                   <img src="${player.logo}" class="" >
-               </div>
-            </div>
-            <div class="flex-grow flex justify-evenly flex-col p-2">
-              <div class="flex justify-between  flex-wrap gap-2 items-center sm:gap-4">
-                  <h3 class="font-bold text-xl  text-neutral-700">${player.name}</h3>
-                  <div onclick=" removeSubstitutes(${index})"><i class="fa-regular fa-square-minus font-extrabold text-red-500 text-xl justify-end"></i></div>
-              </div>
-              <div class="text-[85%]  flex gap-x-6 flex-wrap">      
-                <div class=" flex flex-col md:flex-row gap-2 lg:flex-col">
-                    <p class="font-bold text-slate-700">PAC : <span>${player.pace}|</span></p>
-                    <p class="font-bold text-slate-700">SHO : <span>${player.shooting}|</span></p>
-                    <p class="font-bold text-slate-700">PAS : <span>${player.passing}|</span></p>
-                </div>
-                <div class=" flex flex-col md:flex-row gap-2 lg:flex-col">
-                    <p class="font-bold text-slate-700">DRB : <span>${player.dribbling}|</span></p>
-                    <p class="font-bold text-slate-700">DEF : <span>${player.defending}|</span></p>     
-                    <p class="font-bold text-slate-700">PHY : <span>${player.physical}|</span></p>
-                </div>
-              </div>
-            </div>
-
-        </div>
-
-        <!--     "name": "Kylian Mbappé",
-    "photo": "https://cdn.sofifa.net/players/231/747/25_120.png",
-    "position": "ST",
-    "nationality": "France",
-    "flag": "https://cdn.sofifa.net/flags/fr.png",
-    "club": "Real Madrid",
-    "logo": "https://cdn.sofifa.net/meta/team/3468/120.png",
-    "rating": 92,
-    "pace": 97,
-    "shooting": 89,
-    "passing": 80,
-    "dribbling": 92,
-    "defending": 39,
-    "physical": 77 -->
-
- 
 
 
         <section>
@@ -300,7 +169,7 @@
                         </div>
                         <div>
                             <label for="rating" class="block text-sm mb-1">Rating</label>
-                            <input type="number" id="rating" name="rating" class="w-full p-2 bg-zinc-700 text-white rounded" placeholder="Overall Rating" />
+                            <input type="number" id="ratingGK" name="rating" class="w-full p-2 bg-zinc-700 text-white rounded" placeholder="Overall Rating" />
                         </div>
                     </div>
                     
@@ -316,11 +185,11 @@
               </div>
 
 
-              <div class="suggestion fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden  " >
-                <div>
-
+              <div class="suggestion fixed inset-0  bg-gray-800 bg-opacity-75 flex items-center  justify-center hidden " >
+                <div class=" self-start cursor-pointer p-4">
+                    <button id="cancelSuggestion" class=" text-5xl text-zinc-200"> <i class="fa-regular fa-rectangle-xmark"></i></button>
                 </div>
-                <div class="suggested-players bg-gray-900 p-6 rounded-lg  w-fit grid grid-cols-3 md:grid-cols-6 gap-4">
+                <div class="suggested-players cursor-pointer bg-gray-900 p-6 rounded-lg  w-fit grid grid-cols-3 md:grid-cols-6 gap-4">
                     <div class="relative h-[100px] w-[90px] md:h-[140px] md:w-[110px] lg:h-[180px] lg:w-[150px]">
                         <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
                         <div class="absolute  inset-0 flex flex-col ">
@@ -463,9 +332,7 @@
                         </div>
                     </div>
                 </div>
-              </div>
-              
-              
+              </div>      
         </section>
     </main>
 

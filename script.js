@@ -1205,7 +1205,7 @@ function emptyForm() {
   const ids = [
       "#name", "#nationality", "#club", "#position", "#photo", "#flag", 
       "#logo", "#diving", "#handling", "#reflexes", "#positioning", 
-      "#kicking", "#speed", "#rating", "#physical", "#defending", 
+      "#kicking", "#speed", "#rating", "#ratingGK", "#physical", "#defending", 
       "#dribbling", "#passing", "#shooting", "#pace"
   ];
 
@@ -1238,7 +1238,7 @@ document.getElementById("playerForm").addEventListener('submit', (e)=>{
       positioning: playerModal.querySelector("#positioning").value,
       kicking: playerModal.querySelector("#kicking").value,
       speed: playerModal.querySelector("#speed").value,
-      rating: playerModal.querySelector("#rating").value
+      rating: playerModal.querySelector("ratingGK").value
     }
 
   } else {
@@ -1262,10 +1262,11 @@ document.getElementById("playerForm").addEventListener('submit', (e)=>{
 
   if (validateForm(player)) {
     let exist = players.indexOf(player)
-    if (exist !== -1 ) {
-      alert("The player you are trying to add already exists.");
-    } else {
+    if (exist === -1 ) {
       players.push(player)
+      emptyForm();
+    } else {
+      alert("The player you are trying to add already exists.");
     }
     console.log(players[(players.length)-1])
     playerModal.classList.add('hidden')
@@ -1274,6 +1275,7 @@ document.getElementById("playerForm").addEventListener('submit', (e)=>{
  
     
 })
+
 
 function validateForm(player) {
 
@@ -1351,107 +1353,6 @@ if ( !urlRegex.test(player.logo)) {
   
 }
 
+document.getElementById("cancelSuggestion").addEventListener('click', () => document.querySelector(".suggestion").classList.add("hidden") )
 
-
-// if (suggest[index].position=="GK") {
-//   card.innerHTML =`<div class="relative h-[100px] w-[90px] md:h-[140px] md:w-[110px] lg:h-[180px] lg:w-[150px]">
-//   <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
-//   <div class="absolute  inset-0 flex flex-col ">
-//       <div class="flex h-[50%] justify-between">
-//           <div class="w-[20%]  pt-1 pl-2 md:pt-3  lg:pt-4 lg:pl-3">
-//               <div class="text-[18px] md:text-[20px] font-bold">${suggest[index].rating}</div>
-//               <div class="text-[14px] md:text-[16px] font-semibold font-mono mt-[-7px]">${suggest[index].position}</div>
-//           </div>
-//           <div class="w-[80%]" >
-//               <img class="h-full w-full " src="${suggest[index].photo}" alt="">
-//           </div>
-//       </div>              
-//       <div class="flex flex-col items-center h-[45%]">
-//           <div class="text-[10px] md:text-[12px] font-medium lg:text-[14px]" >${suggest[index].name}</div>
-//           <div class="static-infos flex  gap-[2px] lg:gap-1">
-//               <div >
-//                   <div class=" text-[6px] md:text-[8px] lg:text-[10px] font-normal" >Pos</div>
-//                   <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${suggest[index].positioning}</div>
-//               </div>
-//               <div>
-//                   <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">Div</div>
-//                   <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium" >${suggest[index].diving}</div>
-//               </div>
-//               <div>
-//                   <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">Han</div>
-//                   <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${suggest[index].handling}</div>
-//               </div>
-//               <div>
-//                   <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">Kic</div>
-//                   <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${suggest[index].kicking}</div>
-//               </div>
-//               <div>
-//                   <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">Ref</div>
-//                   <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${suggest[index].reflexes}</div>
-//               </div>
-//               <div>
-//                   <div class="text-[6px]  md:text-[8px] lg:text-[10px] font-normal">Spe</div>
-//                   <div class=" mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${suggest[index].speed}</div>
-//               </div>
-//           </div>
-//           <div class="logos flex justify-center mt-[-2px] gap-1 lg:gap-[6px] items-center">
-//               <div><img class="w-2 md:w-3 lg:w-5" src="${suggest[index].flag}" alt=""></div>
-//               <div><img class="w-2 md:w-3 lg:w-5" src="${suggest[index].logo}" alt=""></div>
-//           </div>
-//       </div>              
-//   </div>
-// </div>`; 
-  
-// } else {
-// card.innerHTML =`<div class="relative h-[100px] w-[90px] md:h-[140px] md:w-[110px] lg:h-[180px] lg:w-[150px]">
-//   <div class="absolute  inset-0"> <img class="h-full w-full" src="./images/gold84.png" alt=""></div>
-//   <div class="absolute  inset-0 flex flex-col ">
-//       <div class="flex h-[50%] justify-between">
-//           <div class="w-[20%]  pt-1 pl-2 md:pt-3  lg:pt-4 lg:pl-3">
-//               <div class="text-[18px] md:text-[20px] font-bold">${suggest[index].rating}</div>
-//               <div class="text-[14px] md:text-[16px] font-semibold font-mono mt-[-7px]">${suggest[index].position}</div>
-//           </div>
-//           <div class="w-[80%]" >
-//               <img class="h-full w-full " src="${suggest[index].photo}" alt="">
-//           </div>
-//       </div>              
-//       <div class="flex flex-col items-center h-[45%]">
-//           <div class="text-[10px] md:text-[12px] font-medium lg:text-[14px]" >${suggest[index].name}</div>
-//           <div class="static-infos flex  gap-[2px] lg:gap-1">
-//               <div >
-//                   <div class=" text-[6px] md:text-[8px] lg:text-[10px] font-normal" >PAC</div>
-//                   <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${suggest[index].pace}</div>
-//               </div>
-//               <div>
-//                   <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">SHO</div>
-//                   <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium" >${suggest[index].shooting}</div>
-//               </div>
-//               <div>
-//                   <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">PAS</div>
-//                   <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${suggest[index].passing}</div>
-//               </div>
-//               <div>
-//                   <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">DRI</div>
-//                   <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${suggest[index].dribbling}</div>
-//               </div>
-//               <div>
-//                   <div class="text-[6px] md:text-[8px] lg:text-[10px] font-normal">DEF</div>
-//                   <div class="mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${suggest[index].defending}</div>
-//               </div>
-//               <div>
-//                   <div class="text-[6px]  md:text-[8px] lg:text-[10px] font-normal">PHY</div>
-//                   <div class=" mt-[-3px] md:mt-0 text-[10px] md:text-[12px] lg:text-[14px] font-medium">${suggest[index].physical}</div>
-//               </div>
-//           </div>
-//           <div class="logos flex justify-center mt-[-2px] gap-1 lg:gap-[6px] items-center">
-//               <div><img class="w-2 md:w-3 lg:w-5" src="${suggest[index].flag}" alt=""></div>
-//               <div><img class="w-2 md:w-3 lg:w-5" src="${suggest[index].logo}" alt=""></div>
-//           </div>
-//       </div>              
-//   </div>
-// </div>`; 
-
-// }
-
-// console.log(addToFormation(1,'lb'));
 
