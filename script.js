@@ -669,23 +669,39 @@ console.log(playerCard)
             </div>
 
       `;
-
-      // <p class="font-bold text-blue-800">DIV : <span>${player.diving} |</span></p>
-      // <p class="font-bold text-blue-800">HDL : <span>${player.handling} |</span></p>
-      // <p class="font-bold text-blue-800">KIK : <span>${player.kicking} |</span></p>
-      // <p class="font-bold text-blue-800">RFL : <span>${player.reflexes} |</span></p>
-      // <p class="font-bold text-blue-800">SPD : <span>${player.speed} |</span></p>
-      // <p class="font-bold text-blue-800">POS : <span>${player.positioning} |</span></p>
-
-
-     console.log(playerCard)
-console.log("playerCard")
-
-
-
-      substitutesContainer.append(playerCard);
-
-    }  
+     substitutesContainer.append(playerCard);
+    }  else {
+      playerCard.innerHTML = `
+                 <div class="flex flex-col  lg:flex-col  ">
+                   <img src="${player.photo}" alt="" class=" " />
+                   <div class="flex p-2 flex-row  justify-between lg:flex-row ">
+                       <span class="font-bold text-lg text-emerald-800">${player.position}</span>
+                       <img src="${player.flag}" class="w-5" >
+                       <img src="${player.logo}" class="w-5" >
+                   </div>
+                 </div>
+              <div class="flex-grow flex justify-evenly flex-col p-2">
+                <div class="flex justify-between  flex-wrap gap-2 items-center sm:gap-4">
+                    <h3 class="font-bold text-xl  text-neutral-700">${player.name}</h3>
+                    <div onclick=" removeSubstitutes(${index})"><i class="fa-regular fa-square-minus font-extrabold text-red-500 text-xl justify-end"></i></div>
+                </div>
+                <div class="text-[85%]  flex gap-x-6 flex-wrap">      
+                  <div class=" flex flex-col gap-2 lg:flex-col">
+                      <p class="font-bold text-slate-700">Pos : <span>${player.positioning}|</span></p>
+                      <p class="font-bold text-slate-700">Han : <span>${player.handling}|</span></p>
+                      <p class="font-bold text-slate-700">kic : <span>${player.kicking}|</span></p>
+                  </div>
+                  <div class=" flex flex-col  gap-2 lg:flex-col">
+                      <p class="font-bold text-slate-700">Spe : <span>${player.speed}|</span></p>
+                      <p class="font-bold text-slate-700">Ref : <span>${player.reflexes}|</span></p>     
+                      <p class="font-bold text-slate-700">Div : <span>${player.diving}|</span></p>
+                  </div>
+                </div>
+              </div>
+  
+        `;
+       substitutesContainer.append(playerCard);
+      } 
   }
   )
  
@@ -1312,7 +1328,6 @@ function validateForm(player) {
 
 
   let namesRegex = /^[a-zA-Z\s.'-]{2,30}$/ ;
-  // let urlRegex = /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\-]*)*$/;
   const urlRegex = /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\-\.]*)*$/;
 
 
